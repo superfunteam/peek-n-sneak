@@ -243,8 +243,9 @@ export function useGame(sound: boolean) {
         if (target.current) {
           const p = current.current.players[session.player];
           const d = distance(p, target.current);
-          input.current.x = d > 6 ? (target.current.x - p.x) / d : 0;
-          input.current.y = d > 6 ? (target.current.y - p.y) / d : 0;
+          const speed = Math.max(0.2, Math.min(1, d / 60));
+          input.current.x = d > 6 ? ((target.current.x - p.x) / d) * speed : 0;
+          input.current.y = d > 6 ? ((target.current.y - p.y) / d) * speed : 0;
           if (d <= 6) target.current = null;
         }
         const data = await api(

@@ -1,0 +1,32 @@
+[build]
+  base = "web"
+  command = "npm run build:netlify"
+  publish = "dist-netlify"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "22.22.2"
+
+[functions]
+  node_bundler = "esbuild"
+
+[dev]
+  command = "npm --prefix web run dev:netlify"
+  targetPort = 5173
+  port = 8888
+  framework = "#custom"
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

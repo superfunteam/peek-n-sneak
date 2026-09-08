@@ -15,10 +15,14 @@
     "test": "tsx --test tests/*.test.ts",
     "typecheck": "tsc --noEmit",
     "db:local": "wrangler d1 execute DB --local --persist-to .wrangler/state --config wrangler.local.json --file drizzle/0000_overconfident_legion.sql",
-    "test:multiplayer": "tsx tests/multiplayer.integration.ts"
+    "test:multiplayer": "tsx tests/multiplayer.integration.ts",
+    "build:netlify": "vite build --config vite.netlify.config.ts",
+    "dev:netlify": "vite --config vite.netlify.config.ts --host 0.0.0.0 --port 5173"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",
+    "@netlify/blobs": "^11.0.3",
+    "@netlify/functions": "^6.0.0",
     "@shadcn/react": "0.3.0",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
