@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "name": "Peek 'n Sneak",
+  "short_name": "Peek 'n Sneak",
+  "description": "The wonderfully weird hide-and-seek classic, rewound for your phone. Play a sneaky bot or invite a friend to Houston, Dallas, and Merrimac.",
+  "lang": "en-US",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#181a17",
+  "theme_color": "#181a17",
+  "categories": ["games"],
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
