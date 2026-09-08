@@ -67,6 +67,10 @@ export default function Home() {
   const blind = state.phase === 'hide' && state.seeker === viewer;
   const hidden = state.phase === 'seek' && state.seeker !== viewer;
   const nearby = active ? nearestSpot(state, viewer) : undefined;
+  const nearbyEmpty =
+    state.phase === 'seek' &&
+    nearby &&
+    state.checked.includes(`${room?.id}/${nearby.id}`);
   const info = LEVELS.find(
     (l) => l.id === (game.playing ? state.level : level),
   )!;
@@ -359,13 +363,25 @@ export default function Home() {
           </div>
           {game.playing ? (
             <>
-              <div className="play-status" aria-live="polite">
+              <div
+                className="play-status"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+              >
                 {game.error ? (
                   <span className="error-copy">{game.error}</span>
                 ) : waiting ? (
                   'Your friend’s controller will light up when they join.'
                 ) : state.phase === 'result' ? (
                   state.message
+                ) : nearbyEmpty ? (
+                  <span className="empty-spot-message">
+                    <strong>
+                      <span aria-hidden="true">×</span> Nobody here.
+                    </strong>{' '}
+                    {nearby.name} — already checked. Try another spot.
+                  </span>
                 ) : nearby ? (
                   <span>
                     <strong>{nearby.name}</strong> · Hold{' '}
@@ -681,8 +697,9 @@ export default function Home() {
             </p>
             <p>
               <strong>2. Seek.</strong> Walk through the black doorways to
-              change rooms. Visit hiding places and hold PEEK to check them.
-              Tiny floor marks help on Classic difficulty. Expert needs the
+              change rooms. Visit hiding places and hold PEEK to check them. A
+              peach X means nobody is there; it stays for this round. Tiny floor
+              dots show unsearched spots on Classic difficulty. Expert needs the
               correct direction as you peek.
             </p>
             <p>

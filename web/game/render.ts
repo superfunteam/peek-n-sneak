@@ -219,11 +219,23 @@ export function drawGame(
       (s.phase === 'seek' && viewer !== s.seeker))
   )
     drawPerson(g, opponent, viewer === 0 ? 0xa8aa98 : N.cream, time);
-  if (!s.expert && !hiddenSelf && (s.phase === 'hide' || s.phase === 'seek'))
+  if (!hiddenSelf && (s.phase === 'hide' || s.phase === 'seek'))
     for (const sp of room.spots) {
       const checked = s.checked.includes(`${room.id}/${sp.id}`);
-      g.fillStyle(checked ? 0x333519 : 0xdbdfab, 0.7);
-      g.fillRect(sp.x - 1, sp.y + 2, 3, 2);
+      if (checked) {
+        // A permanent, high-contrast pixel X records an empty search this round.
+        // Expert mode reveals only places the seeker has already checked.
+        g.fillStyle(N.ink, 0.9);
+        g.fillRect(sp.x - 6, sp.y + 1, 12, 12);
+        g.fillStyle(0xf5ac82);
+        for (let i = 0; i < 5; i++) {
+          g.fillRect(sp.x - 5 + i * 2, sp.y + 2 + i * 2, 2, 2);
+          g.fillRect(sp.x + 3 - i * 2, sp.y + 2 + i * 2, 2, 2);
+        }
+      } else if (!s.expert) {
+        g.fillStyle(0xdbdfab, 0.7);
+        g.fillRect(sp.x - 1, sp.y + 2, 3, 2);
+      }
     }
   if (s.checking && s.progress) {
     g.fillStyle(0x111111);

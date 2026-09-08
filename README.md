@@ -34,6 +34,8 @@ TEST_ORIGIN=https://your-draft-url.netlify.app npm run test:multiplayer
 npm run build:netlify
 ```
 
+For mobile layout regressions, run `npx playwright install chromium webkit`, start `npm run dev:netlify`, and run `npm run test:viewport` from `web/`. This checks fixed canvas/control geometry, browser scale, empty-search X markers, and round resets in Chromium and WebKit at six screen sizes.
+
 Engine tests exercise every hiding spot, graph reachability, both roles, timers, expert mode, bot fairness, and seeker privacy. Multiplayer integration tests create two real sessions and exercise simultaneous input, finding/scoring, reconnect, authorization, and leaving. Set `TEST_ORIGIN=https://peek-n-sneak.superfun.games` to test production.
 
 For full local multiplayer through the original Sites/Cloudflare D1 adapter, run `npm run db:local` and then `npm run dev` from `web/`. In another terminal run `npm run test:multiplayer` (port 3000). `npm run build` verifies that deployment target as well.
