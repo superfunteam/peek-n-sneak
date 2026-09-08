@@ -62,7 +62,14 @@ const approach = async (who: number, x: number, y: number) => {
     const s = who === 0 ? h : g;
     const p = s.game.players[who];
     const d = Math.hypot(x - p.x, y - p.y);
-    if (d < 6) break;
+    if (d < 6) {
+      // Allow previously submitted movement to settle before judging arrival.
+      await tick({ x: 0, y: 0, action: false }, who);
+      await tick({ x: 0, y: 0, action: false }, who);
+      const stopped = (who === 0 ? h : g).game.players[who];
+      if (Math.hypot(x - stopped.x, y - stopped.y) < 15) return;
+      continue;
+    }
     // Ease off near the target so this real-network test tolerates round-trip
     // latency instead of oscillating at full speed around a hiding place.
     const speed = Math.max(0.2, Math.min(1, d / 60));
@@ -71,10 +78,9 @@ const approach = async (who: number, x: number, y: number) => {
       who,
     );
   }
-  await tick({ x: 0, y: 0, action: false }, who);
-  await tick({ x: 0, y: 0, action: false }, who);
-  const p = (who === 0 ? h : g).game.players[who];
-  assert.ok(Math.hypot(x - p.x, y - p.y) < 15, 'Player reached hiding place');
+  assert.fail(
+    `Player ${who} did not reach hiding place: ${JSON.stringify((who === 0 ? h : g).game.players[who])}`,
+  );
 };
 await tick();
 assert.equal(h.started, true);
