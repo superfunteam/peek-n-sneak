@@ -1,0 +1,10 @@
+Generated using the built-in image_gen tool.
+Use case: ads-marketing
+Asset type: Open Graph social sharing card for the browser hide-and-seek game "Peek 'n Sneak".
+Primary request: Make one cohesive landscape social card at approximately 1200:630 (1.905:1) aspect ratio. Strong, immediately readable graphic composition, evoking a printed 1982 game cartridge cover combined with primitive game graphics.
+Scene/backdrop: charcoal black background. A simple flat blue-violet living room vignette with an olive floor and a bright green block couch. Exactly two very thin, weird beige pixel people play hide and seek: one mostly hidden by the couch, another stepping through the room.
+Style/medium: flat primitive 1982 console pixel scene, with very large simple blocks and sparse geometry. Expressive cream 1980s arcade title lettering, slightly playful and irregular while very legible. Restrained faux-print texture.
+Composition/framing: unified landscape graphic poster. Headline large and prominent, with the game scene beneath or alongside it, balanced generous negative space. Keep all text comfortably inside safe margins.
+Color palette: charcoal black, warm cream, electric chartreuse accent, blue-violet wall, olive floor, bright green couch, beige figures. Limited flat colors.
+Text (verbatim): "Peek 'n Sneak" as the largest headline. Supporting copy: "READY OR NOT, HERE I COME." Small label: "HIDE & SEEK • REWOUND".
+Constraints: Preserve the exact apostrophe and spelling in the headline. Exactly the three specified text strings, no added text. No Atari logos or other logos. No 3D, no modern detailed pixel art, no gradients or glossy rendering, no extra characters, no photorealism. This is a complete finished social card, not a game screenshot or web page.
